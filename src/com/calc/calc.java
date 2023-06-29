@@ -20,14 +20,30 @@ public class calc {
 
     public static void main(String[] args) {
 
-        System.out.println("Введите первое значение: ");
-        String firstNumber = scanner.nextLine();
+        String firstNumber, secondNumber;
+        String operation = "";
 
-        System.out.println("Введите оператор: ");
-        String operation = scanner.nextLine();
+        System.out.println("Введите выражение в формате [x+y]:");
+        String input = scanner.nextLine();
 
-        System.out.println("Введите второе значение: ");
-        String secondNumber = scanner.nextLine();
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == '+') {
+                operation = "+";
+            } else if (input.charAt(i) == '-') {
+                operation = "-";
+            } else if (input.charAt(i) == '*') {
+                operation = "*";
+            } else if (input.charAt(i) == '/') {
+                operation = "/";
+            }
+        }
+
+        String[] inputStr = input.split("[+-/*]");
+        if (inputStr.length != 2){
+            throw new IllegalArgumentException("формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+        }
+        firstNumber = inputStr[0];
+        secondNumber = inputStr[1];
 
         String strResult;
         int intResult;
